@@ -1,0 +1,11 @@
+<main>
+  <form class="" action="<?=$requestUrl?>/confirm" method="post">
+    <?php foreach ($booking as $key => $booki) {?>
+      <?php if ($booki['Reservation']==$_GET['reservation']): ?>
+    <input class="hide" type="text" name="reservation" value="<?=$booki['Reservation']?>" readonly>
+  <?php endif; ?>
+<?php } ?>
+<p class="important"><span>Attention !</span> Voulez-vous vraiment retourner à l'accueil et perdre vos données de voyage ?</p>
+    <button type="submit" name="button">Valider</button> <button><a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Annuler</a></button>
+  </form>
+</main>

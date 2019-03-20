@@ -1,0 +1,53 @@
+<main>
+
+  <h2>Récapitulatif de votre voyage</h2>
+
+
+
+  <table class="tableRecap">
+    <th>Destination</th>
+    <th>Date de départ</th>
+    <th>Date de retour</th>
+    <tr>
+<?php foreach ($booking as $key => $booki) {?>
+  <?php if ($booki['Reservation']==$_GET['reservation']): ?>
+    <td><?= $booki['Destination'] ?></td>
+    <td><?= $booki['BookingDate'] ?></td>
+    <td><?= $booki['BackDate'] ?></td>
+  <?php endif; ?>
+<?php } ?>
+</tr>
+  </table>
+  <p>Prix : <?= $booki['Price'] ?> €</p>
+
+
+
+
+
+<button> <a href="<?=$requestUrl?>/confirm?reservation=<?=$_GET['reservation']?>">Annuler et retour à l'accueil</a> </button> <button id="showPayment" type="button">Procéder au paiement</button>
+
+
+
+
+<div class="container hide" id="paiement">
+	<form action="<?=$requestUrl?>/confirmation?reservation=<?=$_GET['reservation']?>" method="post" id="payment-form">
+    <div class="form-row">
+      <label for="card-element">
+        Seul le n° 4242 4242 4242 4242 est valide
+      </label>
+      <div id="card-element">
+
+      </div>
+
+
+      <div id="card-errors" role="alert"></div>
+    </div>
+
+  <button>Valider le paiement</button>
+	</form>
+</div>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="<?= $wwwUrl ?>/js/classes/Payment.class.js"></script>
+</main>

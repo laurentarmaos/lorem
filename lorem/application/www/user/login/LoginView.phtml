@@ -1,0 +1,31 @@
+<?php
+  if(array_key_exists('user', $_SESSION) == true) {?>
+    <h2>Vous êtes connecté</h2>
+  <?php } else { ?>
+
+
+
+  <form class="form-desc" action="<?= $requestUrl ?>/user/login" method="post">
+    <label>Adresse mail : <input type="email" name="Mail" value=""></label><br>
+    <label>Mot de passe : <input type="password" name="Password" value=""></label><br>
+    <button type="submit" >Se connecter</button>
+
+    <?php
+    if (empty($_POST) == false) {
+
+      $userModel = new LoginModel();
+
+      $user = $userModel->loginUser($_POST['Mail'], $_POST['Password']);
+
+      if(empty($user) == false) {
+        $userModel->create($user['Id'], $user['FirstName'], $user['LastName'], $user['Mail']);
+      }else{
+        echo '<p class="error">email et/ou mot de passe incorrect(s)</p>';
+      }
+    }
+     ?>
+  </form>
+
+
+
+<?php } ?>

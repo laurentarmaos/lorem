@@ -1,0 +1,18 @@
+<main>
+
+  <?php
+    if(array_key_exists('user', $_SESSION) == false) {?>
+      <p>Pour continuer, veuillez vous <a href="<?= $requestUrl ?>/user"><u>inscrire</u></a> ou vous <a href="<?= $requestUrl ?>/user/login"><u>connecter</u></a>.</p>
+  <?php }else{ ?>
+
+  <form class="" action="<?= $requestUrl ?>/booking" method="post">
+    <label><h3>Choisissez votre destination : </h3> <br></label>
+
+<button type="button" name="button"> <a href="<?= $requestUrl ?>/booking/bookingdestination">Vers une planète</a> </button>
+
+
+<button type="button" name="button"> <a href="<?= $requestUrl ?>/booking/bookingtravel">Partir en croisière</a> </button>
+
+  </form>
+  <?php } ?>
+</main>

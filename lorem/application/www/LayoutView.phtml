@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Site fictif de voyages spaciaux</title>
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/normalize-3.0.3.min.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/font-awesome-4.3.0.min.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/style.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-button.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-form.css">
+  <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-table.css">
+  <link href="https://fonts.googleapis.com/css?family=Aleo|Space+Mono" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+  <script src="<?= $wwwUrl ?>/js/utilities.js"></script>
+
+</head>
+
+<body class="body">
+
+  <?php if($_SERVER['REQUEST_URI'] == $requestUrl || $_SERVER['REQUEST_URI'] == $requestUrl."/"){ ?>
+    <style>
+    body{
+      background-image: url("<?= $wwwUrl ?>/images/planets/sp4.svg"), url("<?= $wwwUrl ?>/images/fond.jpg");
+      background-position: center, top;
+      background-repeat: no-repeat, no-repeat;
+    }
+  </style>
+  <?php }elseif($_SERVER['REQUEST_URI'] == $requestUrl."/destinations" || $_SERVER['REQUEST_URI'] == $requestUrl."/travels"){ ?>
+  <style>
+  body{
+    background-image: url("<?= $wwwUrl ?>/images/fond.jpg");
+    background-repeat: no-repeat;
+  }
+  </style>
+<?php }else{ ?>
+  <style>
+  body{
+    background-image: url("<?= $wwwUrl ?>/images/planets/sp5.svg"), url("<?= $wwwUrl ?>/images/fond.jpg");
+    background-position: top, top;
+    background-repeat: no-repeat, no-repeat;
+  }
+  </style>
+<?php } ?>
+
+
+
+<header class="header">
+
+  <nav class="nav-main">
+
+    <ul class="nav-main-list">
+      <li> <img class="logo" src="<?= $wwwUrl ?>/images/planets/logo.svg" alt=""> </li>
+      <li><a href="<?= $requestUrl ?>">Accueil</a></li>
+      <li class="maListe"> <a href="<?= $requestUrl ?>/destinations">Où partir ?</a></li>
+      <li> <a href="<?= $requestUrl ?>/travels">Nos croisières</a> </li>
+      <li> <a href="<?= $requestUrl ?>/description">Qui sommes-nous ?</a></li>
+      <li>
+        <ul class="nav-side-list">
+
+          <?php
+          if(array_key_exists('user', $_SESSION) == false) {?>
+
+            <li><a href="<?= $requestUrl ?>/user/login">Se connecter</a></li>
+            <li><a href="<?= $requestUrl ?>/user">S'inscrire</a></li>
+            <li><a href="<?= $requestUrl ?>/booking">Réserver</a></li>
+          <?php }else{?>
+            <li> <a href="<?= $requestUrl ?>/user/logout">Se déconnecter</a> </li>
+            <li><a href="<?= $requestUrl ?>/booking">Réserver</a></li>
+          <?php }?>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+</header>
+
+<main>
+  <?php include $this->viewData['template'] ?>
+</main>
+
+<footer>
+  <p>Ceci est un site e-commerce fictif pour un projet de formation <br>
+    Aucun achat n'est disponible
+  </p>
+</footer>
+
+
+<script src="<?= $wwwUrl ?>/js/classes/BookingDestination.class.js"></script>
+<script src="<?= $wwwUrl ?>/js/classes/BookingTravel.class.js"></script>
+<script src="<?= $wwwUrl ?>/js/main.js"></script>
+</body>
+</html>

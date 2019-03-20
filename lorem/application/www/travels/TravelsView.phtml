@@ -1,0 +1,23 @@
+
+
+
+
+
+  <div class="destinations">
+    <?php foreach ($dests as $key => $dest) { ?>
+
+      <div class="destination">
+        <a href="<?= $requestUrl ?>/travel?name=<?= $dest['Name'] ?>"> <img class="imgSmall"  src="<?= $wwwUrl ?>/images/planets/<?= $dest['Image'] ?>" alt="<?= $dest['Image'] ?>"></a>
+        <h4 class="planets"> <a href="<?= $requestUrl ?>/travel?name=<?= $dest['Name'] ?>"> <?= $dest['Name'] ?></a></h4>
+        <div class="desc">
+          <p><?= $dest['Description'] ?><br><a data-id="<?= $dest['Id'] ?>" id = "plus-<?= $dest['Id'] ?>" class="plus" href="#"><u>Afficher plus</u></a></p>
+
+          <p id="desc-<?= $dest['Id'] ?>" class="desc hide"><?= $dest['DescriptionPlus'] ?>
+            <br>
+            <a data-id="<?= $dest['Id'] ?>" class="plus" href="#"><u>Afficher moins</u></a>
+          </p>
+        </div>
+
+      </div>
+    <?php } ?>
+  </div>

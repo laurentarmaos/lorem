@@ -1,0 +1,27 @@
+
+<div class="destflex">
+  <div class="currentDest">
+  <?php foreach ($dests as $key => $dest) { ?>
+  <?php if ($_GET['name'] == $dest['Name']) { ?>
+  <h2><?= $dest['Name'] ?></h2>
+  <img src="<?= $wwwUrl ?>/images/planets/<?= $dest['Image'] ?>" alt="<?= $dest['Image'] ?>">
+  <p><?= $dest['Description'] ?></p>
+  <p><?= $dest['DescriptionPlus'] ?></p>
+  <?php } ?>
+  <?php } ?>
+  </div>
+
+  <div class="otherDest">
+  <p>Découvrez aussi : </p>
+  <?php foreach ($dests as $key => $dest) { ?>
+  <?php if ($_GET['name'] != $dest['Name']) { ?>
+  <a href="<?= $requestUrl ?>/destination?name=<?= $dest['Name'] ?>"> <?= $dest['Name'] ?></a><br>
+  <?php } ?>
+  <?php } ?>
+  <?php
+    if(array_key_exists('user', $_SESSION) == false) {?>
+  <?php }else{ ?>
+  <a href="<?= $requestUrl ?>/booking/bookingdestination?name=<?= $_GET['name'] ?>">Réserver votre voyage</a>
+  <?php } ?>
+  </div>
+</div>

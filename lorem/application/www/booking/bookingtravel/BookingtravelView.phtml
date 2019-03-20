@@ -1,0 +1,129 @@
+<main>
+
+  <?php
+  if(array_key_exists('user', $_SESSION) == false) {
+    $http = new Http();
+    $http->redirectTo('/');
+  }else{ ?>
+
+
+    <h3>Choisissez votre destination : </h3>
+
+    <form class=" destChoiceForm" action="<?= $requestUrl ?>/booking/bookingtravel" method="post">
+
+
+      <select id="trav" class="selDest" name="dest" >
+        <option value="" class="optDest">Faites votre choix</option>
+        <?php foreach ($travels as $key => $travel) { ?>
+        <option value="<?= $travel['Id'] ?>" class="optDest"><?= $travel['Name'] ?></option>
+        <?php } ?>
+      </select>
+
+
+      <p class="formdate">Date départ<br></p>
+      <div class="destChoice">
+
+        <label>
+          <select class="selDest" id="bookingDay" name="bookingDay">
+            <?php for($bookingDay = 1; $bookingDay <= 31; $bookingDay++): ?>
+              <option class="optDest" value="<?= $bookingDay ?>"><?= $bookingDay ?></option>
+            <?php endfor; ?>
+          </select>
+        </label>
+        <label>
+          <select class="selDest" name="bookingMonth">
+            <option class="optDest" value="1">Janvier</option>
+            <option class="optDest" value="2">Février</option>
+            <option class="optDest" value="3">Mars</option>
+            <option class="optDest" value="4">Avril</option>
+            <option class="optDest" value="5">Mai</option>
+            <option class="optDest" value="6">Juin</option>
+            <option class="optDest" value="7">Juillet</option>
+            <option class="optDest" value="8">Août</option>
+            <option class="optDest" value="9">Septembre</option>
+            <option class="optDest" value="10">Octobre</option>
+            <option class="optDest" value="11">Novembre</option>
+            <option class="optDest" value="12">Décembre</option>
+          </select>
+        </label>
+        <select class="selDest" name="bookingYear">
+          <option class="optDest" value="<?= date('Y')     ?>"><?= date('Y')     ?></option>
+          <option class="optDest" value="<?= date('Y') + 1 ?>"><?= date('Y') + 1 ?></option>
+        </select>
+      </div>
+      <hr>
+      <p class="formdate">Date retour<br></p>
+      <div class="destChoice">
+        <label>
+          <select class="selDest" id="backDay" name="backDay">
+            <?php for($bookingDay = 1; $bookingDay <= 31; $bookingDay++): ?>
+              <option class="optDest" value="<?= $bookingDay ?>"><?= $bookingDay ?></option>
+            <?php endfor; ?>
+          </select>
+        </label>
+        <label>
+          <select class="selDest" name="backMonth">
+            <option class="optDest" value="1">Janvier</option>
+            <option class="optDest" value="2">Février</option>
+            <option class="optDest" value="3">Mars</option>
+            <option class="optDest" value="4">Avril</option>
+            <option class="optDest" value="5">Mai</option>
+            <option class="optDest" value="6">Juin</option>
+            <option class="optDest" value="7">Juillet</option>
+            <option class="optDest" value="8">Août</option>
+            <option class="optDest" value="9">Septembre</option>
+            <option class="optDest" value="10">Octobre</option>
+            <option class="optDest" value="11">Novembre</option>
+            <option class="optDest" value="12">Décembre</option>
+          </select>
+        </label>
+        <select class="selDest" name="backYear">
+          <option class="optDest" value="<?= date('Y')     ?>"><?= date('Y')     ?></option>
+          <option class="optDest" value="<?= date('Y') + 1 ?>"><?= date('Y') + 1 ?></option>
+        </select>
+
+      </div>
+      <hr>
+      <div class="destChoice">
+        <input id="destination" class="hide" type="text" name="destination" value="" readonly>
+      </div>
+      <hr>
+      <div  class="destChoice">
+
+
+      <button id="linkConfirm" class="hide" type="submit">Valider</button>
+      </div>
+
+
+    </form>
+
+
+
+
+    <section class="planetChoice">
+      <article id="validateChoice" class="validateChoice">
+        <?php if (isset($_GET['name'])){ ?>
+          <?php foreach ($travels as $key => $travel) { ?>
+            <?php if ($_GET['name'] == $travel['Name']) { ?>
+              <h3><?= $travel['Name'] ?></h3><br> <?= $travel['Description'] ?> <br> <?= $travel['DescriptionPlus'] ?>
+            <?php }}}else{ ?> <h3><p></p></h3> <?php }; ?>
+
+          </article>
+
+          <article id="trav-details" class="dest-details no-left-label">
+            <?php if (isset($_GET['name'])){ ?>
+              <?php foreach ($travels as $key => $travel) { ?>
+                <?php if ($_GET['name'] == $travel['Name']) { ?>
+                  <img src="<?= $wwwUrl ?>/images/planets/<?= $travel['Image'] ?>" alt="<?= $travel['Image'] ?>">
+                <?php }}}else{ ?><img src="" alt=""><?php }; ?>
+              </article>
+            </section>
+
+          <?php } ?>
+
+
+
+
+
+          <script src="<?= $wwwUrl ?>/js/classes/BookingTravel.class.js"></script>
+        </main>
